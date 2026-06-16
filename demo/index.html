@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智采 Agent · 产品演示</title>
+<style>
+  :root {
+    --paper: #FAFAF9;
+    --ink: #1E293B;
+    --navy: #0F3B5F;
+    --link: #2563EB;
+    --slate: #64748B;
+    --green: #059669;
+    --border: #E2E8F0;
+    --card: #FFFFFF;
+    --accent: #F0F4F8;
+    --warning: #D97706;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Microsoft YaHei', 'PingFang SC', -apple-system, sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* ── Header ── */
+  .nav { text-align: right; padding: 16px 32px; }
+  .nav a { color: var(--slate); text-decoration: none; font-size: 0.85rem; }
+  .nav a:hover { color: var(--navy); }
+
+  .hero {
+    text-align: center;
+    padding: 40px 24px 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero h1 { font-size: 2rem; color: var(--navy); font-weight: 700; letter-spacing: 0.02em; }
+  .hero .sub { font-size: 0.9rem; color: var(--slate); margin-top: 6px; }
+
+  .container { max-width: 900px; margin: 0 auto; padding: 32px 24px 60px; }
+
+  /* ── Workflow ── */
+  .workflow {
+    display: flex; justify-content: center; align-items: center; gap: 0;
+    margin: 32px 0 40px; flex-wrap: wrap;
+  }
+  .wf-card {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border-radius: 6px;
+    background: var(--card); border: 1px solid var(--border);
+    font-size: 0.85rem; font-weight: 500; color: var(--slate);
+  }
+  .wf-card .num {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 24px; height: 24px; border-radius: 4px;
+    background: var(--accent); color: var(--slate); font-size: 0.75rem; font-weight: 700;
+  }
+  .wf-arrow { color: var(--border); font-size: 1.2rem; margin: 0 4px; }
+  .wf-card:nth-child(1) { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .wf-card:nth-child(1) .num { background: rgba(255,255,255,0.2); color: #fff; }
+
+  /* ── Cards ── */
+  .section-title {
+    font-size: 0.75rem; font-weight: 600; color: var(--slate);
+    text-transform: uppercase; letter-spacing: 0.06em; margin: 36px 0 12px;
+  }
+  .card {
+    background: var(--card); border: 1px solid var(--border);
+    border-left: 3px solid var(--slate); border-radius: 6px;
+    padding: 24px 28px; margin: 16px 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  }
+  .card.active { border-left-color: var(--navy); }
+  .card.success { border-left-color: var(--green); }
+  .card .label {
+    font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--slate); margin-bottom: 12px;
+  }
+
+  /* ── Tables ── */
+  table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 8px 0; }
+  th {
+    background: var(--navy); color: #fff; font-weight: 500;
+    padding: 9px 12px; font-size: 0.78rem; text-align: left; letter-spacing: 0.03em;
+  }
+  td { padding: 9px 12px; border-bottom: 1px solid var(--border); }
+  tr:nth-child(even) td { background: var(--accent); }
+
+  .demand-table th { background: var(--accent); color: var(--navy); font-weight: 600; border-bottom: 2px solid var(--border); }
+  .demand-table td { padding: 8px 12px; }
+  .demand-table .dl { font-weight: 600; color: var(--navy); width: 20%; }
+  .demand-table .ok { color: var(--green); font-weight: 500; }
+
+  .tag {
+    font-size: 0.68rem; padding: 1px 7px; border-radius: 3px; font-weight: 500; margin-left: 4px;
+  }
+  .tag.internal { background: #DBEAFE; color: #1E40AF; }
+  .tag.external { background: #FEF3C7; color: #92400E; }
+
+  /* ── Demo Input ── */
+  .demo-input {
+    background: var(--accent); border-radius: 8px; padding: 16px 20px;
+    font-size: 0.9rem; color: var(--ink); margin: 16px 0;
+    border: 1px dashed var(--border);
+  }
+  .demo-input .user-icon { color: var(--link); font-weight: 600; }
+
+  /* ── Advice ── */
+  .advice {
+    background: var(--accent); border-radius: 6px; padding: 16px 20px;
+    font-size: 0.88rem; color: var(--ink); margin: 16px 0;
+  }
+  .advice strong { color: var(--navy); }
+
+  /* ── PDF CTA ── */
+  .pdf-cta {
+    text-align: center; padding: 20px;
+    background: var(--accent); border-radius: 8px; margin: 20px 0;
+  }
+  .pdf-btn {
+    display: inline-block; padding: 10px 28px;
+    background: var(--navy); color: #fff; border-radius: 6px;
+    font-size: 0.9rem; font-weight: 500; text-decoration: none;
+    cursor: default;
+  }
+
+  /* ── Footer ── */
+  .seal {
+    text-align: center; margin-top: 48px; padding-top: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .seal-box {
+    display: inline-block; border: 1.5px solid var(--slate);
+    border-radius: 4px; padding: 6px 16px;
+    color: var(--slate); font-size: 0.72rem;
+    letter-spacing: 0.05em; transform: rotate(-2deg); opacity: 0.7;
+  }
+  .seal-note { margin-top: 8px; font-size: 0.7rem; color: var(--slate); }
+
+  /* ── Responsive ── */
+  @media (max-width: 640px) {
+    .workflow { flex-direction: column; gap: 8px; }
+    .wf-arrow { transform: rotate(90deg); }
+    table { font-size: 0.75rem; }
+    th, td { padding: 6px 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <a href="../index.html">← 返回首页</a>
+</div>
+
+<div class="hero">
+  <h1>🚀 智采 Agent · 产品演示</h1>
+  <p class="sub">一次完整的采购需求处理流程演示</p>
+</div>
+
+<div class="container">
+
+  <!-- ── 阶段指示器 ── -->
+  <div class="workflow">
+    <div class="wf-card"><span class="num">01</span> 需求结构化</div>
+    <span class="wf-arrow">→</span>
+    <div class="wf-card"><span class="num">02</span> 供应商匹配</div>
+    <span class="wf-arrow">→</span>
+    <div class="wf-card"><span class="num">03</span> 报告生成</div>
+  </div>
+
+  <!-- ── 用户输入 ── -->
+  <div class="demo-input">
+    <span class="user-icon">💬 用户输入：</span>
+    "办公室需要采购50箱A4复印纸，70g的，下周送到上海办公室，预算不超过100元/箱"
+  </div>
+
+  <!-- ── §1 需求单 ── -->
+  <div class="section-title">📋 第1步 · 需求结构化</div>
+  <div class="card active">
+    <div class="label">采购需求单</div>
+    <table class="demand-table">
+      <tr><td class="dl">品类</td><td class="ok">A4复印纸</td></tr>
+      <tr><td class="dl">规格</td><td class="ok">70g</td></tr>
+      <tr><td class="dl">数量</td><td class="ok">50 箱</td></tr>
+      <tr><td class="dl">预算</td><td class="ok">≤100 元/箱</td></tr>
+      <tr><td class="dl">期望送达</td><td class="ok">下周 · 上海办公室</td></tr>
+    </table>
+    <p style="margin-top:10px;font-size:0.8rem;color:var(--slate);">
+      ✅ LLM 自动从非结构化输入中提取关键字段，缺失项自动追问补全
+    </p>
+  </div>
+
+  <!-- ── §2 供应商推荐 ── -->
+  <div class="section-title">🔍 第2步 · 供应商智能匹配</div>
+  <div class="card success">
+    <div class="label">供应商推荐结果</div>
+    <p style="font-size:0.82rem;color:var(--slate);margin-bottom:10px;">
+      内部库 12 家 → 有效 2 家 + 联网补充 3 家
+    </p>
+    <table>
+      <thead>
+        <tr><th>供应商名称</th><th>主营产品</th><th>报价（箱）</th><th>交付周期</th><th>优势说明</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>上海晨光科力普办公用品有限公司 <span class="tag internal">内部库</span></td>
+          <td>A4复印纸, 办公耗材</td>
+          <td>¥85/箱</td>
+          <td>3天</td>
+          <td>上海本地仓，次日可达；长期合作供应商，资质齐全</td>
+        </tr>
+        <tr>
+          <td>苏宁易购办公专营店 <span class="tag external">联网</span></td>
+          <td>复印纸, 办公设备</td>
+          <td>¥78/箱</td>
+          <td>2-4天</td>
+          <td>京东物流配送；好评率98%；支持7天无理由</td>
+        </tr>
+        <tr>
+          <td>欧菲斯办公伙伴控股有限公司 <span class="tag internal">内部库</span></td>
+          <td>办公用品, 文具</td>
+          <td>¥90/箱</td>
+          <td>5天</td>
+          <td>全国供应链覆盖；ISO9001认证；账期灵活</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── 采购建议 ── -->
+  <div class="advice">
+    <strong>💼 采购建议：</strong>推荐优先联系「上海晨光科力普」，本地仓储+次日达优势明显。苏宁易购价格最低但需核实发票资质。建议同时询价比较后决策。
+  </div>
+
+  <!-- ── §3 PDF ── -->
+  <div class="section-title">📄 第3步 · PDF 报告生成</div>
+  <div class="pdf-cta">
+    <div style="margin-bottom:12px;font-size:0.88rem;color:var(--ink);">
+      确认推荐结果后，一键生成标准化 PDF 报告
+    </div>
+    <span class="pdf-btn">📄 生成 PDF 报告</span>
+    <p style="margin-top:12px;font-size:0.78rem;color:var(--slate);">
+      报告含：采购需求单 + 供应商对比表 + 采购建议 + 风险提示
+    </p>
+  </div>
+
+  <!-- ── 页脚 ── -->
+  <div class="seal">
+    <div class="seal-box">🤖 AI 生成 · 仅供参考 · 请以人工核对为准</div>
+    <div class="seal-note">智采 Agent v1.0 · DeepSeek · 不做最终采购决策</div>
+  </div>
+
+</div>
+</body>
+</html>

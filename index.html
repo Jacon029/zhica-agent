@@ -174,7 +174,7 @@
       <div class="emoji">🚀</div>
       <h3>智采 Agent</h3>
       <p class="desc">启动智采 Agent，体验需求结构化 → 供应商匹配 → PDF 报告生成全流程</p>
-      <a id="agentLink" href="#" target="_blank" class="btn">进入产品</a>
+      <a href="demo/index.html" class="btn">查看演示</a>
     </div>
 
   </div>
@@ -184,15 +184,6 @@
   </div>
 
 </div>
-
-<!-- 动态构造 Agent 链接，自动适配 localhost 或局域网 IP -->
-<script>
-  (function () {
-    var host = window.location.hostname || 'localhost';
-    var agentUrl = 'http://' + host + ':8501';
-    document.getElementById('agentLink').href = agentUrl;
-  })();
-</script>
 
 </body>
 </html>
