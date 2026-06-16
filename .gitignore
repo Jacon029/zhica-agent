@@ -1,0 +1,30 @@
+# 环境变量（含 API Key）
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Streamlit
+.streamlit/
+
+# 数据文件（运行时生成）
+app/data/reports/
+data/reports/
+
+# 测试/调试临时文件
+*_debug_*.txt
+*_test_*.json
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+Thumbs.db
+.DS_Store

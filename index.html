@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>智采 · AI 采购助手</title>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', 'Helvetica Neue', sans-serif;
+    background: #FAFAF9;
+    color: #1E293B;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 24px;
+  }
+
+  .wrapper {
+    width: 100%;
+    max-width: 960px;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+  }
+
+  .header .icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0F3B5F;
+    margin-bottom: 8px;
+  }
+
+  .header p {
+    font-size: 15px;
+    color: #64748B;
+    line-height: 1.6;
+  }
+
+  /* ── Cards ── */
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 32px 24px 28px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: box-shadow 0.25s, transform 0.25s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+    transform: translateY(-2px);
+  }
+
+  .card .emoji {
+    font-size: 36px;
+    margin-bottom: 16px;
+  }
+
+  .card h3 {
+    font-size: 17px;
+    font-weight: 600;
+    color: #0F3B5F;
+    margin-bottom: 8px;
+  }
+
+  .card .desc {
+    font-size: 13px;
+    color: #64748B;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+
+  .card .btn {
+    display: inline-block;
+    padding: 10px 28px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    background: #0F3B5F;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .card .btn:hover {
+    background: #0A2D4A;
+  }
+
+  .card .btn.outline {
+    background: transparent;
+    color: #0F3B5F;
+    border: 1.5px solid #0F3B5F;
+  }
+
+  .card .btn.outline:hover {
+    background: #0F3B5F;
+    color: #fff;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 12px;
+    color: #94A3B8;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 700px) {
+    .cards {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <div class="header">
+    <div class="icon">🏢</div>
+    <h1>智采 Agent</h1>
+    <p>AI 采购专家智能体 · 需求结构化 · 供应商匹配 · 合规报告交付</p>
+  </div>
+
+  <div class="cards">
+
+    <!-- 卡片 1: Coze AI 智能助手 -->
+    <div class="card">
+      <div class="emoji">🤖</div>
+      <h3>AI 智能助手</h3>
+      <p class="desc">基于 Coze 的 AI 智能对话助手，随时解答采购相关问题</p>
+      <a href="coze-chat/index.html" target="_blank" class="btn outline">开始对话</a>
+    </div>
+
+    <!-- 卡片 2: 智采Agent 产品介绍 -->
+    <div class="card">
+      <div class="emoji">📄</div>
+      <h3>产品介绍</h3>
+      <p class="desc">了解智采 Agent 的产品亮点、技术架构与应用场景</p>
+      <a href="智采Agent-产品介绍.html" target="_blank" class="btn outline">查看详情</a>
+    </div>
+
+    <!-- 卡片 3: 智采Agent 产品 -->
+    <div class="card">
+      <div class="emoji">🚀</div>
+      <h3>智采 Agent</h3>
+      <p class="desc">启动智采 Agent，体验需求结构化 → 供应商匹配 → PDF 报告生成全流程</p>
+      <a id="agentLink" href="#" target="_blank" class="btn">进入产品</a>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    智采 Agent v1.0 · AI 生成仅供参考 · 请以人工核对为准
+  </div>
+
+</div>
+
+<!-- 动态构造 Agent 链接，自动适配 localhost 或局域网 IP -->
+<script>
+  (function () {
+    var host = window.location.hostname || 'localhost';
+    var agentUrl = 'http://' + host + ':8501';
+    document.getElementById('agentLink').href = agentUrl;
+  })();
+</script>
+
+</body>
+</html>

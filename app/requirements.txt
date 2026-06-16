@@ -1,0 +1,24 @@
+# 智采-Agent 依赖清单
+# 安装: pip install -r requirements.txt
+
+# ─── 核心 ───
+streamlit>=1.28.0          # Web 前端
+openai>=1.0.0              # OpenAI SDK（DeepSeek 兼容接口）
+
+# ─── 数据库 ───
+# SQLite3 为 Python 内置模块，无需额外安装
+
+# ─── PDF 生成（按需选择其一）───
+fpdf2>=2.7.8               # 推荐：轻量级 PDF 生成（含中文支持）
+# reportlab>=4.0             # 备选：功能更全但较重
+
+# ─── 联网搜索（可选）───
+tavily-python>=0.3.0       # Tavily Search API（专为 AI Agent 设计）
+# 若使用其他搜索 API，替换为对应 SDK
+
+# ─── 工具库 ───
+python-dotenv>=1.0.0       # 环境变量管理
+
+# ─── 开发/测试 ───
+pytest>=7.4.0              # 测试框架
+pytest-cov>=4.1.0          # 测试覆盖率

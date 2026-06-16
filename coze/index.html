@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 智能助手</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+      background: #fff;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px 24px;
+    }
+
+    .logo {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 22px;
+      font-weight: 500;
+      color: #1a1a1a;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #999;
+      margin-bottom: 24px;
+    }
+
+    .chat-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 28px;
+      font-size: 15px;
+      font-weight: 500;
+      color: #fff;
+      background: #4f46e5;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .chat-btn:hover {
+      background: #4338ca;
+    }
+
+    .chat-btn svg {
+      width: 18px;
+      height: 18px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img
+      class="logo"
+      src="https://lf-coze-web-cdn.coze.cn/obj/coze-web-cn/obric/coze/favicon.1970.png"
+      alt="Logo"
+    />
+    <h1>AI 智能助手</h1>
+    <p class="subtitle">有问题？随时问我</p>
+    <button class="chat-btn" onclick="cozeWebSDK.showChatBot()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+      </svg>
+      开始对话
+    </button>
+  </div>
+
+  <!-- ==================== 扣子 Chat SDK ==================== -->
+  <script src="https://lf-cdn.coze.cn/obj/unpkg/flow-platform/chat-app-sdk/1.2.0-beta.19/libs/cn/index.js"></script>
+  <script>
+    const cozeWebSDK = new CozeWebSDK.WebChatClient({
+      config: {
+        bot_id: '7644483104908165163',
+      },
+      componentProps: {
+        title: 'AI 智能助手',
+      },
+      ui: {
+        asstBtn: {
+          isNeed: false,
+        },
+      },
+      auth: {
+        type: 'token',
+        token: 'pat_wKswXgGKWIggsAUJV5HV2sBKhedfnTg85ts9JEu2Oo1H9ZYEvHtcCc62oCdlnUS3',
+        onRefreshToken: function () {
+          return 'pat_wKswXgGKWIggsAUJV5HV2sBKhedfnTg85ts9JEu2Oo1H9ZYEvHtcCc62oCdlnUS3'
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
